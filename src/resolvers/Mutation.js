@@ -19,6 +19,7 @@ const Mutation = {
      console.log(input)
 
     const user=  (User.findOneAndUpdate({_id:input.id},{
+      // const {name,user} = input
       $set: {
         name:input.name,
         username:input.username,
@@ -38,8 +39,8 @@ const Mutation = {
   } ,
   
   
-  deleteUser: async(parent,input)=>{
-    await User.findOneAndRemove({_id:input.id})
+  deleteUser: async(parent,{id})=>{
+    await User.findByIdAndDelete(input.id)
     return 'deleted';
   }
 

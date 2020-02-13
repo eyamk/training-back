@@ -1,3 +1,3 @@
-const userschema=require ('./userModel');
+const userschema = require('./userModel');
 
-module.exports= { userschema };
+module.exports = { userschema };
