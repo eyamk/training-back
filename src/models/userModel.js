@@ -1,4 +1,4 @@
-const mongoose =require('mongoose');
+const mongoose = require('mongoose');
 
 
 const userSchema = new mongoose.Schema(
@@ -7,10 +7,14 @@ const userSchema = new mongoose.Schema(
     username: String,
     email: String,
     phone: String,
-
+    // photos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }],
   },
-  
 );
+
+userSchema.virtual('photos', { ref: 'Photo', localField: '_id', foreignField: 'user' });
+
+
 const User = mongoose.model('User', userSchema);
 
-module.exports=User;
+
+module.exports = User;

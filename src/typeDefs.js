@@ -2,26 +2,47 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
 type User {
-  
+  id:ID!,
   name:String,
   username:String,
   email:String,
   phone:String,
-
+  photos:[Photo!],
+}
+type Photo{
+  id:ID!,
+  url:String,
+  info:String,
+  user: User!,
+}
+input userInput {
+  name:String,
+  username:String,
+  email:String,
+  phone:String,
 }
 
+input photoInput {
+  url:String,
+  info:String,
+}
   type Query {
-    me: String
-    sayOk : String
-    getuser:[User]
-    getuserById(id:ID!):User
-  }
+    #user
+    getUsers:[User]
+    getuserById(id: ID!):User
+    #photo
+    getPhotos:[Photo]
+    getPhotoById(id:ID!):Photo
+  } 
   type Mutation {
-    sayHi: String
-    createUser(name:String,username:String,email:String,phone:String):User
-     updateUser(name:String,username:String,email:String,phone:String, id:ID!):User
-     deleteUser(id:ID!): String
+   #user 
+    createUser(input:userInput,photos:[photoInput]):User
+     updateUser(input:userInput, id:ID!,photos:[photoInput]):User
+     deleteUser(id:ID!): User
+   #photo
+     createPhoto(input:photoInput, user:ID):Photo
+     updatePhoto(input:photoInput,id:ID!):Photo
+     deletePhoto(id:ID!):Photo
   }
 `;
-
 module.exports = typeDefs;
