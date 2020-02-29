@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     username: String,
     email: String,
     phone: String,
+    gender: String,
     // photos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Photo' }],
   },
 );

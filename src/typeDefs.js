@@ -7,6 +7,7 @@ type User {
   username:String,
   email:String,
   phone:String,
+  gender: Gender,
   photos:[Photo!],
 }
 type Photo{
@@ -14,12 +15,19 @@ type Photo{
   url:String,
   info:String,
   user: User!,
+
 }
 input userInput {
   name:String,
   username:String,
   email:String,
   phone:String,
+  gender: Gender,
+}
+enum Gender{
+    M
+    F
+
 }
 
 input photoInput {

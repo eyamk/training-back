@@ -45,7 +45,6 @@ const Mutation = {
 
 
   updatePhoto: (parent, { input, id }) => {
-    // if (!id) return ('errrr');
     const photo = Photo.findOneAndUpdate(
       {
         _id: id,
@@ -53,7 +52,6 @@ const Mutation = {
       {
         $set: {
           ...input,
-
         },
       },
     );
